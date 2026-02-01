@@ -1,8 +1,6 @@
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y \
-    libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libgomp1 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -11,6 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 8501
-
-CMD ["streamlit", "run", "main.py", "--server.address=0.0.0.0"]
+CMD sh -lc 'streamlit run main.py --server.address=0.0.0.0 --server.port=$PORT'
