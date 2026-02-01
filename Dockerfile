@@ -11,6 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 8501
 
-CMD sh -c "export STREAMLIT_SERVER_PORT=$PORT && streamlit run main.py --server.address=0.0.0.0"
+CMD ["streamlit", "run", "main.py", "--server.address=0.0.0.0"]
